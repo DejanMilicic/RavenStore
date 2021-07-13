@@ -39,7 +39,7 @@ namespace Specs.Features.Products.GetProduct
         }
 
         [Fact(DisplayName = "2. No products returned")]
-        public void FetchedProductIsOkay()
+        public void NoProductReturned()
         {
             _fetchedProduct.Should().BeNull();
         }
