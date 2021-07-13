@@ -29,10 +29,24 @@ namespace RavenStore.Features.Products
 
             public async Task<Product> Handle(Query query, CancellationToken cancellationToken)
             {
+                #region Query Validation
+
+                //if (string.IsNullOrWhiteSpace(query.Name))
+                //    throw new ValidationException();                
+
+                #endregion
+
                 using var session = _store.OpenAsyncSession();
 
                 Product product = await session.Query<Product>()
                     .FirstOrDefaultAsync(x => x.Name == query.Name, token: cancellationToken);
+
+                #region Product Existence Validation
+
+                //if (product == null)
+                //    throw new KeyNotFoundException();                
+
+                #endregion
 
                 return product;
             }
