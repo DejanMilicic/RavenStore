@@ -6,3 +6,6 @@ content-type: application/json
     "Price": 19.99
 }
 
+###
+
+GET http://localhost:33980/product?name=apple
