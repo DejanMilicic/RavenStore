@@ -22,7 +22,8 @@ namespace Specs.Features.Products.CreateProduct
                 Price = 19.99
             };
 
-            _response = TestServer.CreateClient().PostAsync("/product", Serialize(_newProduct)).Result;
+            _response = TestServer.CreateClient()
+                .PostAsync("/product", Serialize(_newProduct)).Result;
 
             WaitForUserToContinueTheTest(Store);
         }

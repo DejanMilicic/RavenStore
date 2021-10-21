@@ -26,7 +26,8 @@ namespace Specs.Features.Products.GetProduct
                 session.SaveChanges();
             }
 
-            _response = TestServer.CreateClient().GetAsync($"/product?name={_product.Name}").Result;
+            _response = TestServer.CreateClient()
+                .GetAsync($"/product?name={_product.Name}").Result;
             _fetchedProduct = Deserialize<Product>(_response);
 
             WaitForUserToContinueTheTest(Store);

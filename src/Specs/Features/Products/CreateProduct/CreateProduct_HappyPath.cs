@@ -16,31 +16,39 @@ namespace Specs.Features.Products.CreateProduct
 
         public CreateProduct_HappyPath()
         {
+            // given : ....
+
+            // when
             _newProduct = new
             {
                 Name = "Apple",
                 Price = 19.99
             };
 
-            _response = TestServer.CreateClient().PostAsync("/product", Serialize(_newProduct)).Result;
+            _response = TestServer.CreateClient()
+                .PostAsync("/product", Serialize(_newProduct)).Result;
 
             WaitForUserToContinueTheTest(Store);
         }
 
+        // then :
         [Fact(DisplayName = "1. Status 200 is returned")]
         public void Status200Returned()
         {
             _response.StatusCode.Should().Be(200);
         }
 
+        // then :
         [Fact(DisplayName = "2. One product is created in the database")]
         public void OneProductCreated()
         {
-            Store.OpenSession().Query<Product>().Statistics(out QueryStatistics stats).ToList();
+            Store.OpenSession().Query<Product>()
+                .Statistics(out QueryStatistics stats).ToList();
 
             stats.TotalResults.Should().Be(1);
         }
 
+        // then :
         [Fact(DisplayName = "3. New product has expected content")]
         public void ExpectedContent()
         {

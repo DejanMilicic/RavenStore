@@ -40,7 +40,8 @@ namespace Specs.Features.Products.CreateProduct
 
             WaitForUserToContinueTheTest(Store);
             
-            _response = TestServer.CreateClient().PostAsync("/product", Serialize(_newProduct)).Result;
+            _response = TestServer.CreateClient()
+                .PostAsync("/product", Serialize(_newProduct)).Result;
         }
 
         [Fact(DisplayName = "1. Status 400 is returned")]
